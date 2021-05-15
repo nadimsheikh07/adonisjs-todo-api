@@ -8,7 +8,7 @@ import Task from 'App/Models/Task'
 export default class TasksController {
   async index({ request, response }) {
     const query = Task.query()
-
+    query.preload('category')
     const search = request.input('search')
     const orderBy = request.input('orderBy')
     const orderDirection = request.input('orderDirection')
@@ -63,7 +63,7 @@ export default class TasksController {
 
     const newUserSchema = schema.create({
       name: schema.string({}, [rules.unique({ table: 'tasks', column: 'name' })]),
-      category_id: schema.number(),
+      categoryId: schema.number(),
       completed: schema.boolean(),
     })
 
@@ -75,7 +75,7 @@ export default class TasksController {
       return response.badRequest(error.messages)
     }
 
-    query.category_id = request.input('category_id')
+    query.categoryId = request.input('category_id')
     query.name = request.input('name')
     query.completed = request.input('completed')
 
@@ -107,7 +107,7 @@ export default class TasksController {
       return response.badRequest(error.messages)
     }
 
-    query.category_id = request.input('category_id')
+    query.categoryId = request.input('category_id')
     query.name = request.input('name')
     query.completed = request.input('completed')
 
