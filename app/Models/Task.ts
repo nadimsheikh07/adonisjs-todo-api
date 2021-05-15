@@ -10,7 +10,10 @@ export default class Task extends BaseModel {
   public categoryId: number
 
 
-  @belongsTo(() => Category)
+  @belongsTo(() => Category,{
+
+
+  })
   public category: BelongsTo<typeof Category>
 
   @column()
