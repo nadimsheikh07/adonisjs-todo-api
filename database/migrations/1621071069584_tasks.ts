@@ -6,6 +6,7 @@ export default class Tasks extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.integer('category_id').unsigned().references('id').inTable('categories').onDelete('restrict').onUpdate('cascade')
       table.string('name').unique().notNullable()
       table.boolean('completed').defaultTo(false)
       table.timestamps(true)
