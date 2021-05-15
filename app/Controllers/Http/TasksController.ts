@@ -63,7 +63,7 @@ export default class TasksController {
 
     const newUserSchema = schema.create({
       name: schema.string({}, [rules.unique({ table: 'tasks', column: 'name' })]),
-      categoryId: schema.number(),
+      category_id: schema.number(),
       completed: schema.boolean(),
     })
 
